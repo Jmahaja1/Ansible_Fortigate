@@ -1,0 +1,42 @@
+- hosts: fortigates
+  connection: httpapi
+  collections:
+    - fortinet.fortios
+  vars:
+    ansible_httpapi_use_ssl: yes
+    ansible_httpapi_validate_certs: no
+    ansible_httpapi_port: 443
+    vdom: ""
+    Make: Fortigate
+    Model: 400E
+  tasks:
+  - name: get all
+    fortios_configuration_fact:
+      vdom: ""
+      access_token: "xxxx"
+      selector: hardware_status
+    register: show_hardware_status
+
+  - name: Print show hardware status
+    debug:
+      var: show_hardware_status
+
+  - name: get all
+    fortios_configuration_fact:
+      vdom: ""
+      access_token: "xxxxx"
+      selector: system_status
+    register: show_system_status
+
+  - name: Print show system status
+    debug:
+      var: show_system_status
+  - name: Create file
+    template:
+     src: fortitest.j2
+     dest: "/xxx/xxx/{{inventory_hostname}}-details"
+     mode: 0744
+    connection: local
+    ignore_errors: yes
+
+
