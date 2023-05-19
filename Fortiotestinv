@@ -1,0 +1,6 @@
+[fortigates]
+xx_xx_xx_xx ansible_host=xx.xx.xx.xx ansible_user=xxxx ansible_ssh_private_key_file=~/xxxx/xxx
+
+
+[fortigates:vars]
+ansible_network_os=fortinet.fortios.fortios
